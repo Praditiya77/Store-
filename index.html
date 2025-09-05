@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praditiya Store - Jasa App Premium Termurah</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variabel CSS */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --gray: #6c757d;
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f9fafb;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Header & Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 10rem;
+            padding-bottom: 5rem;
+            background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+            color: white;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease 0.4s;
+            animation-fill-mode: both;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: #ff4da6;
+        }
+
+        /* Products Section */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-note {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-desc {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .product-btn {
+            align-self: flex-start;
+            margin-top: auto;
+        }
+
+        /* Form Section */
+        .form-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        /* How to Order Section */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            counter-reset: step-counter;
+        }
+
+        .step {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            counter-increment: step-counter;
+        }
+
+        .step::before {
+            content: counter(step-counter);
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .step h3 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-info {
+            text-align: center;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-5px);
+            background: var(--secondary);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            color: var(--primary);
+            font-size: 1.3rem;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px) rotate(5deg);
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+                font-size: 1.5rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 1.5rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navbar -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Praditiya <span>Store</span></a>
+                <ul class="nav-links">
+                    <li><a href="#products">Produk</a></li>
+                    <li><a href="#how-to-order">Cara Order</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Store Jasa App Premium Termurah 🔥</h1>
+                <p>Netflix, Canva, Capcut, hingga Jasa Website & Bot WhatsApp.</p>
+                <a href="#products" class="btn">Lihat Produk</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <div class="container">
+            <h2 class="section-title">Daftar Produk</h2>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-content">
+                        <h3 class="product-title">DAFTAR RESELLER VVIP</h3>
+                        <div class="product-price">Rp170.000</div>
+                        <div class="product-note">Permanent</div>
+                        <p class="product-desc">Akses ke semua produk premium dengan harga reseller terbaik.</p>
+                        <a href="#order" class="btn product-btn">Beli Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-content">
+                        <h3 class="product-title">SEWA BOT WHATSAPP</h3>
+                        <div class="product-price">Rp30.000</div>
+                        <div class="product-note">Per bulan</div>
+                        <p class="product-desc">Bot WhatsApp untuk automasi pesan dan bisnis Anda.</p>
+                        <a href="#order" class="btn product-btn">Beli Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-content">
+                        <h3 class="product-title">JASA BUAT WEBSITE TOPUP</h3>
+                        <div class="product-price">Rp900.000</div>
+                        <div class="product-note">Sekali jadi</div>
+                        <p class="product-desc">Website topup game custom sesuai kebutuhan Anda.</p>
+                        <a href="#order" class="btn product-btn">Beli Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-content">
+                        <h3 class="product-title">Netflix Premium</h3>
+                        <div class="product-price">Rp30.000</div>
+                        <div class="product-note">1 Bulan 1 User | 1 Bulan 2 User</div>
+                        <p class="product-desc">Nikmati tayangan terbaik tanpa iklan dengan kualitas HD.</p>
+                        <a href="#order" class="btn product-btn">Beli Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-content">
+                        <h3 class="product-title">Canva Premium</h3>
+                        <div class="product-price">Rp8.000</div>
+                        <div class="product-note">1 Bulan Sharing</div>
+                        <p class="product-desc">Akses semua fitur pro Canva untuk desain yang lebih profesional.</p>
+                        <a href="#order" class="btn product-btn">Beli Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-content">
+                        <h3 class="product-title">YouTube Premium</h3>
+                        <div class="product-price">Rp6.000</div>
+                        <div class="product-note">1 Bulan Sharing</div>
+                        <p class="product-desc">Gunakan akun fresh, baru atau akun yang belum pernah premium, tambahan biaya +3.000 jika ingin dibuatkan email oleh admin</p>
+                        <a href="#order" class="btn product-btn">Beli Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card">
+                    <div class="product-content">
+                        <h3 class="product-title">Vidio Premier</h3>
+                        <div class="product-price">Rp25.000</div>
+                        <div class="product-note">1 Bulan Sharing</div>
+                        <p class="product-desc">Nonton film dan series terbaru tanpa iklan dengan kualitas HD.</p>
+                        <a href="#order" class="btn product-btn">Beli Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card">
+                    <div class="product-content">
+                        <h3 class="product-title">WeTV Premium</h3>
+                        <div class="product-price">Rp15.000</div>
+                        <div class="product-note">1 Bulan Sharing</div>
+                        <p class="product-desc">Akses konten eksklusif WeTV tanpa batas dan tanpa iklan.</p>
+                        <a href="#order" class="btn product-btn">Beli Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Product 9 -->
+                <div class="product-card">
+                    <div class="product-content">
+                        <h3 class="product-title">BStation Premium</h3>
+                        <div class="product-price">Rp12.000</div>
+                        <div class="product-note">1 Bulan Sharing</div>
+                        <p class="product-desc">Nikmati anime dan konten eksklusif BStation tanpa iklan.</p>
+                        <a href="#order" class="btn product-btn">Beli Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Product 10 -->
+                <div class="product-card">
+                    <div class="product-content">
+                        <h3 class="product-title">Alight Motion Premium</h3>
+                        <div class="product-price">Rp10.000</div>
+                        <div class="product-note">1 Tahun Sharing | 1 Tahun Private</div>
+                        <p class="product-desc">Aplikasi editing video profesional dengan fitur premium.</p>
+                        <a href="#order" class="btn product-btn">Beli Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Product 11 -->
+                <div class="product-card">
+                    <div class="product-content">
+                        <h3 class="product-title">CapCut Premium</h3>
+                        <div class="product-price">Rp25.000</div>
+                        <div class="product-note">1 Bulan Sharing</div>
+                        <p class="product-desc">Editor video dengan fitur premium dan template eksklusif.</p>
+                        <a href="#order" class="btn product-btn">Beli Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Form Section -->
+    <section id="order" style="background: #f1f5f9;">
+        <div class="container">
+            <h2 class="section-title">Form Pemesanan</h2>
+            <div class="form-container">
+                <form id="order-form">
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="whatsapp">Nomor WhatsApp</label>
+                        <input type="tel" id="whatsapp" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product">Pilih Produk</label>
+                        <select id="product" class="form-control" required>
+                            <option value="">-- Pilih Produk --</option>
+                            <option value="DAFTAR RESELLER VVIP">DAFTAR RESELLER VVIP</option>
+                            <option value="SEWA BOT WHATSAPP">SEWA BOT WHATSAPP</option>
+                            <option value="JASA BUAT WEBSITE TOPUP">JASA BUAT WEBSITE TOPUP</option>
+                            <option value="Netflix Premium">Netflix Premium</option>
+                            <option value="Canva Premium">Canva Premium</option>
+                            <option value="YouTube Premium">YouTube Premium</option>
+                            <option value="Vidio Premier">Vidio Premier</option>
+                            <option value="WeTV Premium">WeTV Premium</option>
+                            <option value="BStation Premium">BStation Premium</option>
+                            <option value="Alight Motion Premium">Alight Motion Premium</option>
+                            <option value="CapCut Premium">CapCut Premium</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="package">Pilih Paket</label>
+                        <select id="package" class="form-control" required>
+                            <option value="">-- Pilih Paket --</option>
+                            <!-- Options will be populated dynamically based on product selection -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Jumlah Pembelian</label>
+                        <input type="number" id="quantity" class="form-control" min="1" value="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="payment">Metode Pembayaran</label>
+                        <select id="payment" class="form-control" required>
+                            <option value="">-- Pilih Metode --</option>
+                            <option value="Dana">Dana</option>
+                            <option value="OVO">OVO</option>
+                            <option value="Qris All Payment">Qris All Payment</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Pesan Sekarang</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Order Section -->
+    <section id="how-to-order">
+        <div class="container">
+            <h2 class="section-title">Cara Order</h2>
+            <div class="steps">
+                <div class="step">
+                    <h3>Pilih Produk & Paket</h3>
+                    <p>Pilih produk dan paket yang sesuai dengan kebutuhan Anda dari daftar produk kami.</p>
+                </div>
+                <div class="step">
+                    <h3>Isi Form Pembelian</h3>
+                    <p>Isi form pemesanan dengan data yang valid dan lengkap untuk memudahkan proses.</p>
+                </div>
+                <div class="step">
+                    <h3>Chat ke Admin</h3>
+                    <p>Hubungi admin via WhatsApp atau Email untuk konfirmasi dan instruksi pembayaran.</p>
+                </div>
+                <div class="step">
+                    <h3>Lakukan Pembayaran</h3>
+                    <p>Lakukan pembayaran sesuai dengan metode yang telah dipilih dan konfirmasi ke admin.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="background: #f1f5f9;">
+        <div class="container">
+            <h2 class="section-title">Kontak Kami</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Hubungi Kami</h3>
+                    <p>Silakan hubungi kami melalui WhatsApp atau Email untuk informasi lebih lanjut.</p>
+                    <div class="contact-methods">
+                        <a href="https://wa.me/62895391694499" class="contact-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:emixcustomerservice@gmail.com" class="contact-btn">
+                            <i class="far fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="social-icons">
+                <a href="#" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Praditiya Store. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky Header
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Product packages based on selection
+        const productSelect = document.getElementById('product');
+        const packageSelect = document.getElementById('package');
+
+        const packages = {
+            'DAFTAR RESELLER VVIP': ['Permanent'],
+            'SEWA BOT WHATSAPP': ['1 Bulan', '3 Bulan', '6 Bulan', '1 Tahun'],
+            'JASA BUAT WEBSITE TOPUP': ['Standard', 'Premium', 'Enterprise'],
+            'Netflix Premium': ['1 Bulan 1 User', '1 Bulan 2 User'],
+            'Canva Premium': ['1 Bulan Sharing'],
+            'YouTube Premium': ['1 Bulan Sharing'],
+            'Vidio Premier': ['1 Bulan Sharing'],
+            'WeTV Premium': ['1 Bulan Sharing'],
+            'BStation Premium': ['1 Bulan Sharing'],
+            'Alight Motion Premium': ['1 Tahun Sharing', '1 Tahun Private'],
+            'CapCut Premium': ['1 Bulan Sharing']
+        };
+
+        productSelect.addEventListener('change', function() {
+            const selectedProduct = this.value;
+            packageSelect.innerHTML = '<option value="">-- Pilih Paket --</option>';
+            
+            if (selectedProduct && packages[selectedProduct]) {
+                packages[selectedProduct].forEach(pkg => {
+                    const option = document.createElement('option');
+                    option.value = pkg;
+                    option.textContent = pkg;
+                    packageSelect.appendChild(option);
+                });
+            }
+        });
+
+        // Form submission
+        document.getElementById('order-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            const email = document.getElementById('email').value;
+            const product = document.getElementById('product').value;
+            const package = document.getElementById('package').value;
+            const quantity = document.getElementById('quantity').value;
+            const payment = document.getElementById('payment').value;
+            
+            const message = `Halo Admin, saya ingin membeli produk:%0A%0A` +
+                            `Nama: ${encodeURIComponent(name)}%0A` +
+                            `WhatsApp: ${encodeURIComponent(whatsapp)}%0A` +
+                            `Email: ${encodeURIComponent(email)}%0A` +
+                            `Produk: ${encodeURIComponent(product)}%0A` +
+                            `Paket: ${encodeURIComponent(package)}%0A` +
+                            `Jumlah: ${encodeURIComponent(quantity)}%0A` +
+                            `Metode Pembayaran: ${encodeURIComponent(payment)}%0A%0A` +
+                            `Terima kasih 🙏`;
+            
+            // Open WhatsApp
+            window.open(`https://wa.me/62895391694499?text=${message}`, '_blank');
+            
+            // Prepare email content
+            const emailSubject = `Pemesanan Produk: ${product}`;
+            const emailBody = `Halo Admin,%0D%0A%0D%0A` +
+                            `Saya ingin membeli produk:%0D%0A%0D%0A` +
+                            `Nama: ${encodeURIComponent(name)}%0D%0A` +
+                            `WhatsApp: ${encodeURIComponent(whatsapp)}%0D%0A` +
+                            `Email: ${encodeURIComponent(email)}%0D%0A` +
+                            `Produk: ${encodeURIComponent(product)}%0D%0A` +
+                            `Paket: ${encodeURIComponent(package)}%0D%0A` +
+                            `Jumlah: ${encodeURIComponent(quantity)}%0D%0A` +
+                            `Metode Pembayaran: ${encodeURIComponent(payment)}%0D%0A%0D%0A` +
+                            `Terima kasih 🙏`;
+            
+            // Open email client
+            window.location.href = `mailto:emixcustomerservice@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${emailBody}`;
+        });
+    </script>
+</body>
+</html>
